@@ -1,3 +1,4 @@
+'use strict';
 module.exports = {
   arrayNext: (arr, item) => {
     var len = arr.length,
