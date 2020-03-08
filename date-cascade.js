@@ -1,13 +1,15 @@
 // date-cascade.js
 class DateCascade {
     constructor(options = {}) {
+      let date = new Date()
       this.options = Object.assign({}, options)
       this.el = document.getElementById(this.options.el)
       this.startYear = this.options.startYear
       this.endYear = this.options.endYear
-      this.monthDays = [31, this.isLeapYear(this.startYear) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-      this.currentYear = this.startYear
-      this.currentMonth = this.currentDate = 1
+      this.currentYear = date.getFullYear()
+      this.currentMonth = date.getMonth() + 1
+      this.currentDate = date.getDate()
+      this.monthDays = [31, this.isLeapYear(this.currentYear) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
       this.yearSelect = this.monthSelect = this.dateSelect = null
       this.init()
     }
@@ -17,7 +19,6 @@ class DateCascade {
       this.handleSelectChange()
       this.observer()
     }
-  
     observer() {
       this.currentState = {
         currentYear: this.currentYear,
@@ -37,7 +38,6 @@ class DateCascade {
         })
       })
     }
-  
     isLeapYear(year) {
       return ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0)
     }
@@ -51,26 +51,18 @@ class DateCascade {
 
     handleYearSelectChange({ target }) {
       let { monthSelect, dateSelect } = this
-      this.monthDays.splice(1, 1, !this.isLeapYear(target.value) ? 28 : 29)
+      this.monthDays.splice(1, 1, this.isLeapYear(target.value) ? 29 : 28)
       this.currentYear = +target.value
-      this.currentMonth = this.prevMonth || 1
-      this.currentDate = this.prevDate || 1
-      this.renderMonthSelect(this.monthSelect)
       this.renderDateSelect(this.dateSelect)
-      monthSelect.options[this.currentMonth - 1].selected = true
-      dateSelect.options[this.currentDate - 1].selected = true
     }
 
     handleMonthSelectChange({ target }) {
       let { dateSelect } = this
       this.currentMonth = +target.value
-      this.prevMonth = this.currentMonth
       this.renderDateSelect(this.dateSelect)
-      dateSelect.options[this.currentDate - 1].selected = true
     }
     handleDateSelectChange({ target }) {
       this.currentDate = +target.value
-      this.prevDate = this.currentDate
     }
 
     createSelectContainer() {
@@ -95,15 +87,23 @@ class DateCascade {
       this.dateSelect = dateSelect
     }
 
+    setDefaultSelected(select, current) {
+      let index = Array.from(select.options).findIndex(options => +options.value === current)
+      select.options[~index ? index : 0].selected = true
+      this.currentDate = ~index ? this.currentDate : 1
+    }
+
     renderYearSelect(select) {
       let { startYear, endYear } = this
       let options = ''
-      for (let i = startYear; i <= endYear; i++) {
+      let index = 0
+      for (let i = startYear; i <= endYear; i++, index++) {
         options += `<option value="${i}">${i}</option>`
       }
       select.innerHTML = options
+      this.setDefaultSelected(select, this.currentYear)
     }
-  
+
     renderMonthSelect(select) {
       let options = ''
       let monthDays = this.monthDays
@@ -111,6 +111,7 @@ class DateCascade {
         options += `<option value="${i+1}">${i+1}</option>`
       }
       select.innerHTML = options
+      this.setDefaultSelected(select, this.currentMonth)
     }
 
     renderDateSelect(select) {
@@ -120,6 +121,7 @@ class DateCascade {
         options += `<option value="${i+1}">${i+1}</option>`
       }
       select.innerHTML = options
+      this.setDefaultSelected(select, this.currentDate)
     }
 
   }
