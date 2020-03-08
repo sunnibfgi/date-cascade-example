@@ -50,16 +50,16 @@ class DateCascade {
     }
 
     handleYearSelectChange({ target }) {
-      let { monthSelect, dateSelect } = this
+      let { dateSelect } = this
       this.monthDays.splice(1, 1, this.isLeapYear(target.value) ? 29 : 28)
       this.currentYear = +target.value
-      this.renderDateSelect(this.dateSelect)
+      this.renderDateSelect(dateSelect)
     }
 
     handleMonthSelectChange({ target }) {
       let { dateSelect } = this
       this.currentMonth = +target.value
-      this.renderDateSelect(this.dateSelect)
+      this.renderDateSelect(dateSelect)
     }
     handleDateSelectChange({ target }) {
       this.currentDate = +target.value
