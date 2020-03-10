@@ -96,8 +96,7 @@ class DateCascade {
     renderYearSelect(select) {
       let { startYear, endYear } = this
       let options = ''
-      let index = 0
-      for (let i = startYear; i <= endYear; i++, index++) {
+      for (let i = startYear; i <= endYear; i++) {
         options += `<option value="${i}">${i}</option>`
       }
       select.innerHTML = options
