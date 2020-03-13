@@ -61,9 +61,9 @@ export default class DateCascade {
 
     handleSelectChange(): void {
       let { yearSelect, monthSelect, dateSelect } = this
-      yearSelect.addEventListener('change', (e) => this.handleYearSelectChange(e))
-      monthSelect.addEventListener('change', (e) => this.handleMonthSelectChange(e))
-      dateSelect.addEventListener('change', (e) => this.handleDateSelectChange(e))
+      yearSelect.addEventListener('change', (event) => this.handleYearSelectChange(event))
+      monthSelect.addEventListener('change', (event) => this.handleMonthSelectChange(event))
+      dateSelect.addEventListener('change', (event) => this.handleDateSelectChange(event))
     }
 
     handleYearSelectChange(this: DateCascade, { target }): void {
