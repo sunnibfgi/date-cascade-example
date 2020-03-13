@@ -1,0 +1,24 @@
+{
+  "restartable": "rs",
+  "ignore": [
+    ".git",
+    ".svn",
+    "node_modules/**/node_modules",
+    "bin/*",
+    ".eslintrc",
+    "package.json",
+    "package-lock.json"
+  ],
+  "verbose": true,
+  "execMap": {
+    "js": "node --harmony"
+  },
+  "watch": [
+    
+  ],
+  "env": {
+    "NODE_ENV": "development"
+  },
+  
+  "ext": "js json html css jpg gif png"
+}
