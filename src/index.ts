@@ -1,4 +1,4 @@
-import DateCascade from './data-cascade'
+import DateCascade from './date-cascade'
 
 const result: DateCascade = new DateCascade({
    el: 'demo',
