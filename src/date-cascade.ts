@@ -3,7 +3,7 @@
 import {Options, currentState} from './types'
 
 export default class DateCascade {
-    static changeCallback: (state: any) => void;
+    static changeCallback: (state: currentState) => void;
     options: Options;
     el: HTMLElement;
     startYear: number;
