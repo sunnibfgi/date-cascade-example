@@ -10,10 +10,10 @@ app.disable('x-powered-by')
 app.set('port', process.env.PORT || 3003)
 app.set('view engine', 'html')
 
-app.use(express.static(__dirname + '/build'));
+app.use(express.static(__dirname + '/build'))
 app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + '/index.html'));
-});
+    res.sendFile(path.join(__dirname + '/index.html'))
+})
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
