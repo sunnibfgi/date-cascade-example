@@ -1,5 +1,4 @@
 const fs = require('fs')
-
 const shortName = function(str) {
   return str.substring(0, str.indexOf('.'))
 }
