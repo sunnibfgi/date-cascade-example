@@ -9,7 +9,7 @@ module.exports = {
   output: {
     filename: "main-[hash:8].js",
     path: path.resolve(__dirname, "build"),
-    libraryTarget: 'umd'
+    //libraryTarget: 'umd'
   },
 
   mode: "production",

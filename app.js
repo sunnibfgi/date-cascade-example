@@ -10,7 +10,7 @@ app.set('view engine', 'html')
 app.set('views', path.join(__dirname, 'views'))
 app.disable('x-powered-by')
 app.set('port', process.env.PORT || 3003)
-app.use(express.static(__dirname + '/build'))
+app.use('/assets', express.static(__dirname + '/build'))
 
 app.use('/', require('./routes'))
 
