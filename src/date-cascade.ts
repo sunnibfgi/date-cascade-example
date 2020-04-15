@@ -32,6 +32,9 @@ export default class DateCascade {
     }
 
     init(): void {
+      if(!this.el) {
+        return false as any
+      }
       this.createSelectContainer()
       this.handleSelectChange()
       this.observer()
@@ -91,7 +94,6 @@ export default class DateCascade {
       yearSelect.setAttribute('data-type', 'year')
       monthSelect.setAttribute('data-type', 'month')
       dateSelect.setAttribute('data-type', 'date')
-
       this.el.appendChild(yearSelect)
       this.el.appendChild(monthSelect)
       this.el.appendChild(dateSelect)
