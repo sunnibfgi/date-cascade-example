@@ -31,9 +31,9 @@ export default class DateCascade {
       this.init()
     }
 
-    init(): void {
+    init() {
       if(!this.el) {
-        return false as any
+        return false
       }
       this.createSelectContainer()
       this.handleSelectChange()
