@@ -27,7 +27,7 @@
     "webpack-manifest-plugin": "^2.2.0"
   },
   "dependencies": {
-    "express": "^4.10.1",
+    "express": "^4.18.2",
     "nodemon": "^2.0.2",
     "swig": "^1.4.2"
   }
